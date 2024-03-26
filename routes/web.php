@@ -20,9 +20,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Public routes of authtication
-Route::controller(LoginRegisterController::class)->group(function() {
-    Route::post('/register', 'register');
-    Route::post('/login', 'login');
-});
 
