@@ -26,3 +26,7 @@ Route::controller(LoginRegisterController::class)->group(function() {
     Route::post('/register', 'register');
     Route::post('/login', 'login');
 });
+
+
+Route::post('/logout', [LoginRegisterController::class, 'logout']);
+
