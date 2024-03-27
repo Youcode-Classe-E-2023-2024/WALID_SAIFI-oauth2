@@ -17,4 +17,9 @@ class Group extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class);
+    }
+
 }
