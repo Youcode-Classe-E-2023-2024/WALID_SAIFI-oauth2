@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\GroupeController;
+use App\Http\Controllers\PermissionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -39,4 +40,12 @@ Route::put('/groupes/{id}/update', [GroupeController::class, 'update']);
 Route::delete('/groupes/{id}/delete', [GroupeController::class, 'delete']);
 
 Route::put('/groupes/{groupId}/utilisateurs/{userId}/assigner', [GroupeController::class, 'assignUserToGroup']);
+
+
+
+Route::post('/permissions', [PermissionController::class, 'store']);
+Route::get('/permissions/{id}', [PermissionController::class, 'show']);
+Route::put('/permissions/{id}', [PermissionController::class, 'update']);
+Route::delete('/permissions/{id}', [PermissionController::class, 'destroy']);
+
 
