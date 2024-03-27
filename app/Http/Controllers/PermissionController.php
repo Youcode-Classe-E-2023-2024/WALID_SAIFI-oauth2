@@ -16,7 +16,7 @@ class PermissionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|unique:permissions|string|max:255',
         ]);
 
         $permission = Permission::create([
@@ -45,7 +45,6 @@ class PermissionController extends Controller
 
         return response()->json(['message' => 'Permission mise à jour avec succès', 'permission' => $permission], 200);
     }
-
 
     public function destroy($id)
     {
