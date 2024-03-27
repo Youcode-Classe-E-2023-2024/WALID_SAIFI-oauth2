@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class GroupeController extends Controller
@@ -57,4 +58,20 @@ class GroupeController extends Controller
 
         return response()->json(['message' => 'Le groupe a été supprimé avec succès'], 200);
     }
+
+
+    public function assignUserToGroup(Request $request, $groupId, $userId)
+    {
+        $group = Group::findOrFail($groupId);
+        $user = User::findOrFail($userId);
+
+        $group->users()->syncWithoutDetaching($user);
+
+        return response()->json(['message' => 'Utilisateur assigné au groupe avec succès'], 200);
+    }
+
+
+
+
+
 }
