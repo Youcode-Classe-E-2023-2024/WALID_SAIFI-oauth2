@@ -34,3 +34,8 @@ Route::post('/logout', [LoginRegisterController::class, 'logout']);
 
 Route::post('/groupes/ajouter', [GroupeController::class, 'ajouter']);
 
+Route::put('/groupes/{id}/update', [GroupeController::class, 'update']);
+
+// Route pour supprimer un groupe
+Route::delete('/groupes/{id}/delete', [GroupeController::class, 'delete']);
+
