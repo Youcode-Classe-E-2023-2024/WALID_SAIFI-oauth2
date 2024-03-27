@@ -48,6 +48,7 @@ class GroupeController extends Controller
     // Méthode pour supprimer un groupe
     public function delete($id)
     {
+        //dd('test');
         // Recherche du groupe à supprimer
         $group = Group::findOrFail($id);
 
