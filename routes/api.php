@@ -48,7 +48,8 @@ Route::get('/permissions/{id}', [PermissionController::class, 'show']);
 Route::put('/permissions/{id}', [PermissionController::class, 'update']);
 Route::delete('/permissions/{id}', [PermissionController::class, 'destroy']);
 
-Route::post('/groups/{groupId}/permissions/assign', [PermissionController::class, 'assignPermissionToGroup']);
+Route::put('/groups/{groupId}/permissions/{permId}', [PermissionController::class, 'assignPermissionToGroup']);
+
 
 
 
