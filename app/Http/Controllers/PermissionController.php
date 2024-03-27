@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
 use Illuminate\Http\Request;
 use App\Models\Permission;
 
@@ -53,4 +54,6 @@ class PermissionController extends Controller
 
         return response()->json(['message' => 'Permission supprimée avec succès'], 200);
     }
+
+
 }
