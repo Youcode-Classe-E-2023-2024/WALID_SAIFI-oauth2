@@ -30,6 +30,10 @@ Route::controller(LoginRegisterController::class)->group(function() {
 });
 
 
+Route::group(['middleware' => 'checkGroupName'], function () {
+    // Les routes qui nécessitent de vérifier la présence du groupe "Admin" peuvent être placées ici
+});
+
 Route::post('/logout', [LoginRegisterController::class, 'logout']);
 
 
