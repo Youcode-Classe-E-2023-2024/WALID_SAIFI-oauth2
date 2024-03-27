@@ -56,4 +56,24 @@ class PermissionController extends Controller
     }
 
 
+
+
+    public function assignPermissionToGroup(Request $request, $groupId, $permId)
+    {
+        $group = Group::findOrFail($groupId);
+        $permission = Permission::findOrFail($permId);
+
+        // Vérifier si la permission est déjà assignée au groupe
+        if ($group->permissions->contains($permission->id)) {
+            return response()->json(['message' => 'La permission est déjà assignée au groupe.'], 422);
+        }
+
+        // Assigner la permission au groupe
+        $group->permissions()->attach($permission);
+
+        return response()->json(['message' => 'Permission assignée au groupe avec succès'], 200);
+    }
+
+
+
 }
