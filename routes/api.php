@@ -38,3 +38,5 @@ Route::put('/groupes/{id}/update', [GroupeController::class, 'update']);
 
 Route::delete('/groupes/{id}/delete', [GroupeController::class, 'delete']);
 
+Route::put('/groupes/{groupId}/utilisateurs/{userId}/assigner', [GroupeController::class, 'assignUserToGroup']);
+
