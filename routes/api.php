@@ -59,7 +59,6 @@ Route::group(['middleware' => ['auth:api', 'checkGroupName']], function () {
 
 });
 
-
 Route::delete('/logout', [LoginRegisterController::class, 'logout'])->middleware('auth:api');
 
 
