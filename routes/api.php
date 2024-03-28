@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
+});*/
 
 
 // Public routes of authtication
@@ -30,30 +30,26 @@ Route::controller(LoginRegisterController::class)->group(function() {
 });
 
 
-Route::group(['middleware' => 'checkGroupName'], function () {
-    // Les routes qui nécessitent de vérifier la présence du groupe "Admin" peuvent être placées ici
+Route::group(['middleware' => ['auth:api', 'checkGroupName']], function () {
+
+    Route::post('/groupes/ajouter', [GroupeController::class, 'ajouter']);
+
+    Route::put('/groupes/{id}/update', [GroupeController::class, 'update']);
+
+    Route::delete('/groupes/{id}/delete', [GroupeController::class, 'delete']);
+
+    Route::put('/groupes/{groupId}/utilisateurs/{userId}/assigner', [GroupeController::class, 'assignUserToGroup']);
+
+
+    Route::post('/permissions', [PermissionController::class, 'store']);
+    Route::get('/permissions/{id}', [PermissionController::class, 'show']);
+    Route::put('/permissions/{id}', [PermissionController::class, 'update']);
+    Route::delete('/permissions/{id}', [PermissionController::class, 'destroy']);
+
+    Route::put('/groups/{groupId}/permissions/{permId}', [PermissionController::class, 'assignPermissionToGroup']);
+
 });
 
-Route::post('/logout', [LoginRegisterController::class, 'logout']);
 
-
-Route::post('/groupes/ajouter', [GroupeController::class, 'ajouter']);
-
-Route::put('/groupes/{id}/update', [GroupeController::class, 'update']);
-
-Route::delete('/groupes/{id}/delete', [GroupeController::class, 'delete']);
-
-Route::put('/groupes/{groupId}/utilisateurs/{userId}/assigner', [GroupeController::class, 'assignUserToGroup']);
-
-
-
-Route::post('/permissions', [PermissionController::class, 'store']);
-Route::get('/permissions/{id}', [PermissionController::class, 'show']);
-Route::put('/permissions/{id}', [PermissionController::class, 'update']);
-Route::delete('/permissions/{id}', [PermissionController::class, 'destroy']);
-
-Route::put('/groups/{groupId}/permissions/{permId}', [PermissionController::class, 'assignPermissionToGroup']);
-
-
-
+Route::delete('/logout', [LoginRegisterController::class, 'logout'])->middleware('auth:api');
 
