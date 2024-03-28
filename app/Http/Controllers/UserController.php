@@ -33,7 +33,7 @@ class UserController extends Controller
             'password' => bcrypt($request->input('password')),
         ]);
 
-        return response()->json($user, 201);
+        return response()->json(['message' => 'Utilisateur ajouté avec succès', 'user' => $user], 201);
     }
 
     public function update(Request $request, $id)
@@ -53,7 +53,7 @@ class UserController extends Controller
         }
         $user->save();
 
-        return response()->json($user, 200);
+        return response()->json(['message' => 'Utilisateur mis à jour avec succès', 'user' => $user], 200);
     }
 
     public function destroy($id)
