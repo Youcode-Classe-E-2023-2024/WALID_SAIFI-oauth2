@@ -6,7 +6,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use Validator;
+use Illuminate\Support\Facades\Validator;
+
+
 
 class LoginRegisterController extends Controller
 {
@@ -100,12 +102,18 @@ class LoginRegisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+
+
+
+
     public function logout(Request $request)
     {
         auth()->user()->tokens()->delete();
         return response()->json([
             'status' => 'success',
-            'message' => 'User is logged out successfully'
+            'message' => 'L\'utilisateur est déconnecté avec succès'
         ], 200);
     }
+
 }
