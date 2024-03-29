@@ -39,8 +39,8 @@ class LoginRegisterControllerTest extends TestCase
     public function testLogin()
     {
         $data = [
-            'email' => 'test@example.com',
-            'password' => 'password',
+            'email' => 'aaaa@gmail.com',
+            'password' => 'aaaa@gmail.com',
         ];
 
         $response = $this->json('POST', '/login', $data);
