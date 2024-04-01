@@ -7,11 +7,58 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+
+    /**
+     * @OA\Get(
+     *     path="/api/users",
+     *     summary="Get all users",
+     *     tags={"Users"},
+     *     security={{ "passport": {} }},
+     *     @OA\Response(
+     *         response=200,
+     *         description="List of users",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/User")
+     *         )
+     *     )
+     * )
+     */
     public function index()
     {
         $users = User::all();
         return response()->json($users);
     }
+
+
+    /**
+     * @OA\Get(
+     *     path="/api/users/{id}",
+     *     summary="Get user by ID",
+     *     tags={"Users"},
+     *     security={{ "passport": {} }},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the user",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="User details",
+     *         @OA\JsonContent(ref="#/components/schemas/User")
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="User not found"
+     *     )
+     * )
+     */
+
 
     public function show($id)
     {
